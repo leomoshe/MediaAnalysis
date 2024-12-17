@@ -1,0 +1,4 @@
+{
+    "process_srt": { "port": 5000 },
+    "process_media": {"port": 5000}
+}

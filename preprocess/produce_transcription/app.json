@@ -1,0 +1,11 @@
+{
+    "host": "0.0.0.0",
+    "port": "5000",
+    "language": "he",
+    "ivrit": "_comment_",
+    "model_path_ivrit": "/home/temp/dev/MediaAnalysis/models/huggingface/hub/ivrit-ai-faster-whisper-v2-d3-e3/",
+    "faster-whisper": "_comment_",
+    "model_path": "/home/temp/dev/MediaAnalysis/models/huggingface/hub/faster-whisper-large-v1/snapshots//22b32386e4012f0e7a5c13657821ea11626b0daf",
+    "path": "../data/media/",
+    "output": "../data/media/output/srt/"
+}

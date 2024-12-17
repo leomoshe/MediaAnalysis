@@ -1,0 +1,7 @@
+{
+    "host": "0.0.0.0",
+    "port": "5002",
+    "model_path": "/home/temp/dev/MediaAnalysis/models/dicta-bert-ner/",
+    "path": "../../data/media/output/transcription/srt/",
+    "output": "../../data/media/output/entities/dicta/"
+}

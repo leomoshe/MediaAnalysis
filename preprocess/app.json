@@ -1,0 +1,10 @@
+{
+    "host": "0.0.0.0",
+    "port": "5000",
+    "dependencies": [
+        {"id": "process_srt",
+        "port": 5001},
+        {"id": "process_media",
+        "port": 5002}
+    ]
+}

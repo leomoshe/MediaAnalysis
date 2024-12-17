@@ -1,0 +1,28 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    with open("data.csv", "r") as f:
+        data = [tuple(row) for row in csv.reader(f)]
+
+    return render_template("index.html", data=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Hyperlinks</title>
+</head>
+<body>
+    {% for text, start_time in data %}
+        <a href="https://www.google.com/search?q={{ text }}">{{ text }}</a>
+        <br>
+    {% endfor %}
+</body>
+</html>
+

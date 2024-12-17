@@ -1,0 +1,15 @@
+{
+    "host": "0.0.0.0",
+    "port": "5003",
+    "domain": "https://prsecspma",
+    "media_path_replace_": [
+        { "oldvalue": "/mnt/prfs1sec/", "newvalue": "\\\\prfs1sec\\Media\\"},
+        { "oldvalue": "/", "newvalue": "\\"}
+    ],
+    "media_path_replace": [
+        { "oldvalue": "/mnt/prfs1sec/", "newvalue": "https://secmedia.prod.police.dom/"}
+    ],
+    "entities_paths": ["../data/media/output/entities/spacy/", "../data/media/output/entities/dicta/"],
+    "tsrt_path": "demo\\",
+    "output": "../data/media/output/tsrt/"
+}

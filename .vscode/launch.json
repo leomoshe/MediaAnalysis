@@ -1,0 +1,577 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+
+
+        {
+            "name": "produce_transcription Demo",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_transcription",
+            "program": "${workspaceFolder}/preprocess/produce_transcription/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_transcription/.venv/bin/python",
+            "args": [
+                "--path",
+                "../data/media/",
+                "--output",
+                "../data/media/output/transcription/"
+            ]
+        },
+        {
+            "name": "produce_spacy_entities Demo",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_entities/produce_spacy/",
+            "program": "${workspaceFolder}/preprocess/produce_entities/produce_spacy/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_entities/produce_spacy/.venv/bin/python",
+            "args": [
+                "--path",
+                "../../data/media/output/transcription/srt/",
+                "--output",
+                "../../data/media/output/entities/spacy/"
+            ]
+        },
+        {
+            "name": "produce_dicta_entities Demo",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_entities/produce_dicta/",
+            "program": "${workspaceFolder}/preprocess/produce_entities/produce_dicta/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_entities/produce_dicta/.venv/bin/python",
+            "args": [
+                "--path",
+                "../../data/media/output/transcription/srt/",
+                "--output",
+                "../../data/media/output/entities/dicta/"
+            ]
+        },
+        {
+            "name": "produce_tsrt Demo",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_tsrt/",
+            "program": "${workspaceFolder}/preprocess/produce_tsrt/app.py",
+            "python": "python3",
+            "args": [
+                "--entities_paths",
+                "../data/media/output/entities/spacy/",
+                "../data/media/output/entities/dicta/",
+                "--tsrt_path", 
+                "demo\\",
+                "--output",
+                "../data/media/output/tsrt/"
+            ]
+        },
+
+        {
+            "name": "run process_media file",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "..\\data\\shabtay.wav"
+            ]
+        },
+        {
+            "name": "run process_srt file",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "..\\data\\shabtay.srt"
+            ]
+        },
+        {
+            "name": "fast preprocess",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/",
+            "program": "${workspaceFolder}/preprocess/app.py",
+            "python": "${workspaceFolder}/preprocess/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "process_srt preprocess",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "process_media preprocess",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "post process_media file",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/",
+            "program": "${workspaceFolder}/preprocess/post.py",
+            "python": "${workspaceFolder}/preprocess/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}/preprocess/data/shabtay.wav",
+                "--type",
+                "m"
+            ]
+        },
+        {
+            "name": "post process_srt file",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/",
+            "program": "${workspaceFolder}/preprocess/post.py",
+            "python": "${workspaceFolder}/preprocess/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}/preprocess/data/shabtay.srt",
+                "--type",
+                "s"
+            ]
+        },
+        {
+            "name": "post process_srt folder",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/",
+            "program": "${workspaceFolder}/preprocess/post.py",
+            "python": "${workspaceFolder}/preprocess/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}/preprocess/data",
+                "--type",
+                "s"
+            ]
+        },
+        {
+            "name": "process_media service history Haravot Barzel",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/PeleDocMedia/peledoc.prod.police.dom sites 90142_2022 MediaLib/Output/",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/90142_2022/"
+            ]
+        },
+        {
+            "name": "process_srt service history Haravot Barzel",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/90142_2022/srt",
+                "--tsrt_path",
+                "90142_2022\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/90142_2022/tsrt"
+            ]
+        },
+        {
+            "name": "process_media service extern",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/bin/python",
+            "args": [
+                "--path",
+                "${workspaceFolder}/preprocess/data/extern/yad_vashem/",
+                "--output",
+                "${workspaceFolder}/preprocess/data/extern/yad_vashem/"
+            ]
+        },
+        {
+            "name": "process_srt service extern",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/master_chef/Pj71y-WhR74.srt",
+                "--tsrt_path",
+                "MigdalorDemo\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/master_chef/tsrt"
+            ]
+        },
+        {
+            "name": "process_media service Migdalor",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/Migdalor/",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/Migdalor/"
+            ]
+        },
+        {
+            "name": "process_srt service Migdalor",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/Migdalor/srt",
+                "--tsrt_path",
+                "Migdalor\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/Migdalor/tsrt"
+            ]
+        },
+        {
+            "name": "process_media service Darom",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/FileForAI/Darom/",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/FileForAI/Darom/"
+            ]
+        },
+        {
+            "name": "process_srt service Darom",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/FileForAI/Darom/srt",
+                "--tsrt_path",
+                "Darom\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/FileForAI/Darom/tsrt"
+            ]
+        },
+        {
+            "name": "process_media service History",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_media",
+            "program": "${workspaceFolder}/preprocess/process_media/app.py",
+            "python": "${workspaceFolder}/preprocess/process_media/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/History/output",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/output"
+            ]
+        },
+        {
+            "name": "process_srt service History",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/output/srt",
+                "--tsrt_path",
+                "History\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/output/tsrt"
+            ]
+        },
+        {
+            "name": "file_watcher",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/file_watcher",
+            "program": "${workspaceFolder}/file_watcher/main.py",
+            "python": "${workspaceFolder}/file_watcher/.venv/Scripts/python.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}/preprocess/data/"
+            ]
+        }
+        ,
+        {
+            "name": "RandD image_captioning",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/RandD/image_captioning",
+            "program": "${workspaceFolder}/RandD/image_captioning/main.py",
+            "python": "${workspaceFolder}/RandD/image_captioning/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "srt2text",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/sandbox/srt2text",
+            "program": "${workspaceFolder}/sandbox/srt2text/app.py",
+            "python": "${workspaceFolder}/sandbox/srt2text/.venv/bin/python",
+            "args": [
+           ]
+        },
+        {
+            "name": "fine_tune_whisper",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/sandbox/fine_tune_whisper",
+            "program": "${workspaceFolder}/sandbox/fine_tune_whisper/app.py",
+            "python": "${workspaceFolder}/sandbox/fine_tune_whisper/.venv/bin/python",
+            "args": [
+            ]
+        },
+        {
+            "name": "wer",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/sandbox/wer",
+            "program": "${workspaceFolder}/sandbox/wer/app.py",
+            "python": "${workspaceFolder}/sandbox/wer/.venv/bin/python",
+            "args": [
+            ]
+        },
+        {
+            "name": "produce_srt service extern",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/process_srt",
+            "program": "${workspaceFolder}/preprocess/process_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/process_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/master_chef/Pj71y-WhR74.srt",
+                "--tsrt_path",
+                "MigdalorDemo\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/extern/master_chef/tsrt"
+            ]
+        },
+
+
+        {
+            "name": "produce_srt MigdalorDemoNG",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_srt",
+            "program": "${workspaceFolder}/preprocess/produce_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/MigdalorDemo/",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/MigdalorDemoNG/"
+            ]
+        },
+        {
+            "name": "produce_entities MigdalorDemoNG",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_entities",
+            "program": "${workspaceFolder}/preprocess/produce_entities/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_entities/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/MigdalorDemoNG/srt",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/MigdalorDemoNG/entities"
+            ]
+        },
+        {
+            "name": "produce_tsrt MigdalorDemoNG",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_tsrt",
+            "program": "${workspaceFolder}/preprocess/produce_tsrt/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_tsrt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/MigdalorDemoNG/entities",
+                "--tsrt_path",
+                "MigdalorDemoNG\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/MigdalorDemoNG/tsrt"
+            ]
+        },
+
+        {
+            "name": "produce_srt History",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_srt",
+            "program": "${workspaceFolder}/preprocess/produce_srt/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_srt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/mnt/prfs1sec/History/",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/",
+                "--from",
+                "2030_01_01"
+            ]
+        },
+        {
+            "name": "produce_entities History",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_entities",
+            "program": "${workspaceFolder}/preprocess/produce_entities/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_entities/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/srt",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History"
+            ]
+        },
+        {
+            "name": "produce_tsrt History",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/produce_tsrt",
+            "program": "${workspaceFolder}/preprocess/produce_tsrt/app.py",
+            "python": "${workspaceFolder}/preprocess/produce_tsrt/.venv/bin/python",
+            "args": [
+                "--path",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/entities",
+                "--tsrt_path",
+                "History\\",
+                "--output",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/History/tsrt"
+            ]
+        },
+        {
+            "name": "preprocess publisher",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/publisher",
+            "program": "${workspaceFolder}/preprocess/publisher/app.py",
+            "python": "python3",
+            "args": [
+                "--project",
+                "History",
+                "--local_container",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/",
+                "--destination",
+                "/mnt/prsecspma/tsrt/",
+            ]
+        },
+        {
+            "name": "preprocess report",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/scripts",
+            "program": "${workspaceFolder}/preprocess/scripts/preprocess_report.py",
+            "python": "python3",
+            "args": [
+                "--project",
+                "History",
+                "--source",
+                "/mnt/prfs1sec",
+                "--local_container",
+                "/home/leo/Public/dev/MediaAnalysis/preprocess/data/",
+                "--destination",
+                "/mnt/prsecspma/tsrt/",
+            ]
+        },
+        {
+            "name": "cp_new_files",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/preprocess/scripts",
+            "program": "${workspaceFolder}/preprocess/scripts/cp_new_files.py",
+            "python": "/usr/bin/python3",
+            "sudo": true
+        },
+        {
+            "name": "repo_export",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/scripts/repo_management",
+            "program": "${workspaceFolder}/scripts/repo_management/export.py",
+            "python": "/usr/bin/python3"
+        }
+        ,
+        {
+            "name": "repo_import",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/scripts/repo_management",
+            "program": "${workspaceFolder}/scripts/repo_management/import.py",
+            "python": "/usr/bin/python3"
+        }
+
+    ]
+}
