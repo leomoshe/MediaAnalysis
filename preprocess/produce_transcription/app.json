@@ -5,7 +5,8 @@
     "ivrit": "_comment_",
     "model_path_ivrit": "/home/temp/dev/MediaAnalysis/models/huggingface/hub/ivrit-ai-faster-whisper-v2-d3-e3/",
     "faster-whisper": "_comment_",
-    "model_path": "/home/temp/dev/MediaAnalysis/models/huggingface/hub/faster-whisper-large-v1/snapshots//22b32386e4012f0e7a5c13657821ea11626b0daf",
+    "model_path_internal": "/home/temp/dev/MediaAnalysis/models/huggingface/hub/faster-whisper-large-v1/snapshots//22b32386e4012f0e7a5c13657821ea11626b0daf",
+    "model_path_external": "large-v1",
     "path": "../data/media/",
     "output": "../data/media/output/srt/"
 }

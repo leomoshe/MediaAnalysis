@@ -33,8 +33,10 @@ logger.addHandler(console_handler)
 
 datetime_fmt = "%Y_%m_%d-%H:%M:%S"
 # Check if NVIDIA GPU is available
-DEVICE = "cuda" # cpu
-COMPUTE_TYPE = "float16" # float16, int8_float16, int8
+# cuda, float16
+# cpu, int8
+DEVICE = "cpu" # cuda, cpu
+COMPUTE_TYPE = "int8" # float16, int8_float16, int8
 model = None
 
 '''
@@ -46,6 +48,14 @@ def force_cudnn_init():
 torch.cuda.empty_cache()
 force_cudnn_init()
 '''
+
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    print("uncaught exception:", exc_value)
+sys.excepthook = handle_exception
+
 
 @app.route('/', methods=["POST", "GET"])
 def main_route():
@@ -67,13 +77,37 @@ def video2mp3(video_fullpath: str, mp3_fullpath: str) -> int:
 
 
 def get_mediainfo(media_fullpath: str) -> str:
-    command = ['ffprobe', '-v', 'error', '-show_entries', 'stream=codec_type', '-of', 'default=noprint_wrappers=1:nokey=1', media_fullpath]
+    command = ['ffprobe', '-v', 'error', '-show_entries', 'stream=codec_type,height,width,display_aspect_ratio', '-of', 'default=noprint_wrappers=1', media_fullpath]
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, error = process.communicate()
     if error:
         logger.info(error)
-    res = map(lambda item: item[0], out.decode("utf-8").splitlines())
-    return ','.join(res)
+    res = out.decode("utf-8").splitlines()
+    audio = True if 'codec_type=audio' in res else False
+    video = False
+    if 'codec_type=video' in res:
+        width_item = [item for item in res if item.startswith('width')]
+        if len(width_item) > 0:
+            width = width_item[0].split('=')[1]
+            if width != '64':
+                video = True
+        height_item = [item for item in res if item.startswith('height')]
+        if len(height_item) > 0:
+            height = height_item[0].split('=')[1]
+            if height != '64':
+                video = True
+        display_aspect_ratio_item = [item for item in res if item.startswith('display_aspect_ratio')]
+        if len(display_aspect_ratio_item) > 0:
+            display_aspect_ratio = display_aspect_ratio_item[0].split('=')[1]
+            if display_aspect_ratio != '1:1':
+                video = True
+
+    codecs = []
+    if audio:
+        codecs.append('a')
+    if video:
+        codecs.append('v')
+    return ','.join(codecs)
 
 
 def create_srt_file(full_path="transcribe.srt", results=None, fast_whisper=True):
@@ -84,9 +118,9 @@ def create_srt_file(full_path="transcribe.srt", results=None, fast_whisper=True)
     with open(full_path, mode="w", encoding='utf-8-sig') as file_dst:
         for index, _dict in enumerate(results):
             if fast_whisper:
-                start_time = _dict[2]#_dict[0] # start
-                end_time = _dict[3]#_dict[1] # end
-                text = _dict[4]#_dict[2] # text
+                start_time = _dict.start #_dict[2]#_dict[0] # start
+                end_time = _dict.end #_dict[3]#_dict[1] # end
+                text = _dict.text #_dict[4]#_dict[2] # text
             else:
                 start_time = _dict["start"]
                 end_time = _dict["end"]
@@ -175,6 +209,7 @@ def process_audio(fullpath=None):
            comment = 'external srt'
         else:
             segments, info = model.transcribe(local_fullpath, beam_size=5, language=config['language'])
+            #segments, info = model.transcribe(local_fullpath, beam_size=5, language=config['language'], temperature=0.2)
             language = info.language
             percent = info.language_probability
             #print("For '%s' detected language '%s' with probality %f" % (fullpath, info.language, info.language_probability))
@@ -218,7 +253,8 @@ if __name__ == "__main__":
     parser.add_argument('-f', '--from', required=False, help='Format: YYYY_MM_DD')
     config = tools.Configuration(__file__.replace("py", "json"), parser)
     logger.info(config)
-    os.environ["HUGGINGFACE_HUB_CACHE"] = config["model_path"]
+    # Only for internal use
+    # os.environ["HUGGINGFACE_HUB_CACHE"] = config["model_path"]
     model = faster_whisper.WhisperModel(config['model_path'], device=DEVICE, compute_type=COMPUTE_TYPE)
     Path(config['output']).mkdir(parents=True, exist_ok=True)
     config['report_file'] = path.join(config['output'], "report_srt.csv")
