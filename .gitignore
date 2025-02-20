@@ -1,2 +1,9 @@
-**/model.bin
+#Folders
 .venv/
+__pycache__/
+**/data/media/output
+
+#Files
+*.log
+**/model.bin
+**/*.pyc
